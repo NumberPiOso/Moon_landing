@@ -10,7 +10,20 @@ from collections import Counter
 LR = 1e-3
 env = gym.make('LunarLander-v2')
 env.reset()
-for _ in range(100):
-    env.render()
-    env.step(env.action_space.sample()) # take a random action
-env.close()
+goal_steps = 200
+score_requirement = 50
+initial_games = 1000
+
+def some_random_games_first():
+    for episode in range(5):
+        env.reset()
+        for t in range(200):
+            env.render()
+            action = env.action_space.sample()
+            observation, reward, done, info = env.step(action)
+            print( action)
+            if done:
+                break
+
+
+some_random_games_first()
